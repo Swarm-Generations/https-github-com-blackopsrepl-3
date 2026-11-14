@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the hermes-solverforge-routing plugin works</title>
+<!-- seo -->
+<meta name="description" content="The SolverForge route-optimization flow, the docked chat-plus-map view, the commands, and what the engine, dashboard, desktop and skills folders each do.">
+<link rel="canonical" href="https://pukujan.github.io/https-github-com-blackopsrepl-3/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Https Github Com Blackopsrepl">
+<meta property="og:title" content="How the hermes-solverforge-routing plugin works">
+<meta property="og:description" content="The SolverForge route-optimization flow, the docked chat-plus-map view, the commands, and what the engine, dashboard, desktop and skills folders each do.">
+<meta property="og:url" content="https://pukujan.github.io/https-github-com-blackopsrepl-3/about.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How the hermes-solverforge-routing plugin works">
+<meta name="twitter:description" content="The SolverForge route-optimization flow, the docked chat-plus-map view, the commands, and what the engine, dashboard, desktop and skills folders each do.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1f883d">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"How the hermes-solverforge-routing plugin works","description":"The SolverForge route-optimization flow, the docked chat-plus-map view, the commands, and what the engine, dashboard, desktop and skills folders each do.","url":"https://pukujan.github.io/https-github-com-blackopsrepl-3/about.html","isPartOf":{"@type":"WebSite","name":"Https Github Com Blackopsrepl","url":"https://pukujan.github.io/https-github-com-blackopsrepl-3/","inLanguage":"en"}}</script>
+<!-- /seo -->
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --primary: #1f883d;
+  --primary-foreground: #ffffff;
+  --muted: #161b22;
+  --muted-foreground: #8b949e;
+  --border: #30363d;
+  --accent: #1f883d;
+  --card: #111820;
+  --font-heading: 'Inter', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --radius: 0px;
+}
+html, body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-body); }
+
+[data-goto],button,a[href]{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+[data-goto]:hover,button:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.m-t{opacity:0;transform:translateY(var(--m-rise)) scale(var(--m-scale));transition:opacity var(--m-ms) var(--m-ease),transform var(--m-ms) var(--m-ease);transition-delay:var(--m-delay,0ms)}
+img.m-t{transform:scale(1.06)}
+.m-t.m-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.m-t{opacity:1;transform:none;transition:none}[data-goto]:hover,button:hover{transform:none}}
+</style>
+</head>
+<body>
+<!-- navigation -->
+<nav class="bg-[var(--background)] border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6 h-16">
+    <a href="#" data-goto="home" class="text-[var(--foreground)] text-lg leading-tight tracking-tight truncate" style="font-family:var(--font-heading)">hermes-solverforge-routing</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm">
+      <li><a href="#" data-goto="home" class="text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">Overview</a></li>
+      <li><a href="#" data-goto="about" class="text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">The Plugin</a></li>
+      <li><a href="#" data-goto="contact" class="text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">Contact</a></li>
+    </ul>
+    <a href="#" class="sr-only">hermes-solverforge-routing</a>
+    <a href="#" data-goto="contact" class="inline-flex items-center min-h-11 px-5 bg-[var(--primary)] text-[var(--primary-foreground)] text-sm uppercase tracking-widest rounded-[var(--radius)] hover:bg-[var(--foreground)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">Install</a>
+  </div>
+</nav>
+<!-- say: built the edge-to-edge nav bar with brand and links -->
+<!-- say: kept short mobile nav with call-to-action -->
+<!-- say: ensured the focus states meet accessibility -->
+</nav>
+
+<!-- hero -->
+<section class="relative bg-white text-[#59636e] overflow-hidden">
+  <!-- say: Switching the hero to a white field with ink-grey text -->
+  <div aria-hidden="true" class="pointer-events-none absolute -top-24 left-1/2 h-[420px] w-[720px] max-w-none -translate-x-1/2 rounded-full bg-[#1f883d] opacity-[0.14] blur-[120px] motion-safe:animate-[heroDrift_22s_ease-in-out_infinite] motion-reduce:animate-none"></div>
+  <!-- say: Soft green glow drifting slowly behind the title -->
+  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-32">
+    <p class="uppercase tracking-widest text-xs md:text-sm text-[#59636e]">THE PLUGIN</p>
+    <!-- say: Mono handle set large beneath the eyebrow label -->
+    <p class="mt-8 font-mono text-base md:text-xl tracking-tight text-[#59636e]">hermes-solverforge-routing</p>
+    <!-- say: Huge left-set display headline, off-centre not boxed -->
+    <h1
+      class="mt-6 text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight max-w-[14ch] text-[#0b1215]"
+      style="font-family:var(--font-heading)"
+    >One plugin. <span class="text-[#1f883d]">Chat in</span>, routes out.</h1>
+    <!-- say: One accent word in green inside the headline -->
+    <div class="mt-12 md:mt-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <p class="max-w-xl text-base md:text-lg leading-relaxed text-[#59636e]">
+        Everything the repo ships, in order, on this page.
+      </p>
+      <a
+        href="#"
+        data-goto="contact"
+        class="inline-flex min-h-[44px] items-center justify-center self-start bg-[#1f883d] px-8 py-3 text-sm uppercase tracking-widest text-white rounded-[var(--radius)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1f883d] focus-visible:ring-offset-2 focus-visible:ring-offset-white hover:bg-[#1a7433]"
+      >Contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- manifesto -->
+<section class="bg-[#f6f8fa] text-[#59636e] py-20 md:py-32">
+  <!-- say: swapping the ink field for a pale band, sans throughout -->
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-xs uppercase tracking-widest text-[#1f883d] mb-8">What it does</p>
+    <h2 class="text-6xl md:text-8xl leading-[0.9] text-[var(--foreground)] max-w-5xl" style="font-family:var(--font-heading)">
+      Ask, solve,<br>look at the map.
+    </h2>
+
+    <!-- say: keeping the flat three-step sequence, now on pale grey -->
+    <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+      <div class="border-t border-[#59636e]/25 pt-6">
+        <span class="block text-4xl md:text-5xl leading-none mb-4 opacity-40" style="font-family:var(--font-heading)">01</span>
+        <p class="text-lg leading-relaxed max-w-sm">
+          You type a request into the Hermes Agent chat.
+        </p>
+      </div>
+      <div class="border-t border-[#59636e]/25 pt-6">
+        <span class="block text-4xl md:text-5xl leading-none mb-4 opacity-40" style="font-family:var(--font-heading)">02</span>
+        <p class="text-lg leading-relaxed max-w-sm">
+          The plugin hands it to SolverForge. SolverForge solves the route.
+        </p>
+      </div>
+      <div class="border-t border-[#59636e]/25 pt-6">
+        <span class="block text-4xl md:text-5xl leading-none mb-4 opacity-40" style="font-family:var(--font-heading)">03</span>
+        <p class="text-lg leading-relaxed max-w-sm">
+          The answer comes back into the same conversation — and onto a map docked beside it.
+        </p>
+      </div>
+    </div>
+
+    <!-- say: closing lines stay large and flat, dark ink on pale -->
+    <div class="mt-16 md:mt-24 max-w-4xl">
+      <p class="text-3xl md:text-5xl leading-tight text-[var(--foreground)]" style="font-family:var(--font-heading)">
+        No second window. No copy-paste between tools.
+      </p>
+    </div>
+
+    <a href="#" data-goto="home"
+       class="inline-flex items-center gap-3 mt-12 min-h-[44px] px-8 py-4 bg-[#1f883d] text-[var(--primary-foreground)] text-base tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--foreground)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8fa]">
+      hermes-solverforge-routing
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="square"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- timeline -->
+<section class="bg-[var(--background)] py-24 sm:py-32">
+  <!-- say: adding the SolverForge routing-flow chart above the steps -->
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="text-6xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight text-[var(--foreground)]" style="font-family:var(--font-heading)">The flow, step by step.</h2>
+
+    <!-- say: dark graphite panel, burnt-orange square bars, duration relative only -->
+    <figure class="mt-16 sm:mt-20 bg-[#1c1c1a] p-6 sm:p-10">
+      <figcaption class="text-xs uppercase tracking-widest text-[#b8b4ad]">SolverForge routing flow</figcaption>
+
+      <div class="mt-8 space-y-6">
+        <div>
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="text-base sm:text-lg leading-tight text-[#f4f1ea]" style="font-family:var(--font-heading)">Request</h3>
+            <span class="text-xs uppercase tracking-widest text-[#b8b4ad]">Step 1</span>
+          </div>
+          <div class="mt-2 h-8 w-full bg-[#8a4a1f]"></div>
+        </div>
+
+        <div>
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="text-base sm:text-lg leading-tight text-[#f4f1ea]" style="font-family:var(--font-heading)">Solver</h3>
+            <span class="text-xs uppercase tracking-widest text-[#b8b4ad]">Step 2</span>
+          </div>
+          <div class="mt-2 h-8 w-full bg-[#c2571d]"></div>
+        </div>
+
+        <div>
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="text-base sm:text-lg leading-tight text-[#f4f1ea]" style="font-family:var(--font-heading)">Route result</h3>
+            <span class="text-xs uppercase tracking-widest text-[#b8b4ad]">Step 3</span>
+          </div>
+          <div class="mt-2 h-8 w-full bg-[#e07030]"></div>
+        </div>
+      </div>
+
+      <p class="mt-8 text-sm leading-relaxed text-[#b8b4ad]">Bars show flow order only; no timings are implied.</p>
+    </figure>
+
+    <!-- say: white cards, hairline rules, green markers, gentle hover nudge -->
+    <ol class="mt-16 sm:mt-20 space-y-3 bg-[#f6f8fa] p-3 sm:p-4">
+      <li class="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-4 sm:gap-x-10 items-baseline rounded-none border border-[#f6f8fa] bg-white px-4 py-8 sm:px-6 sm:py-10 transition-transform duration-500 ease-out hover:-translate-y-0.5 hover:translate-x-0.5">
+        <span class="text-4xl sm:text-5xl leading-none tracking-tight text-[#1f883d]" style="font-family:var(--font-heading)">01</span>
+        <div>
+          <h3 class="text-2xl sm:text-3xl leading-tight text-[#0d1117]" style="font-family:var(--font-heading)">Request</h3>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-[#59636e] max-w-2xl">You write the routing problem in plain language in the Hermes Agent chat.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-4 sm:gap-x-10 items-baseline rounded-none border border-[#f6f8fa] bg-white px-4 py-8 sm:px-6 sm:py-10 transition-transform duration-500 ease-out hover:-translate-y-0.5 hover:translate-x-0.5">
+        <span class="text-4xl sm:text-5xl leading-none tracking-tight text-[#1f883d]" style="font-family:var(--font-heading)">02</span>
+        <div>
+          <h3 class="text-2xl sm:text-3xl leading-tight text-[#0d1117]" style="font-family:var(--font-heading)">Dispatch</h3>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-[#59636e] max-w-2xl">The plugin packages the request and sends it to SolverForge.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-4 sm:gap-x-10 items-baseline rounded-none border border-[#f6f8fa] bg-white px-4 py-8 sm:px-6 sm:py-10 transition-transform duration-500 ease-out hover:-translate-y-0.5 hover:translate-x-0.5">
+        <span class="text-4xl sm:text-5xl leading-none tracking-tight text-[#1f883d]" style="font-family:var(--font-heading)">03</span>
+        <div>
+          <h3 class="text-2xl sm:text-3xl leading-tight text-[#0d1117]" style="font-family:var(--font-heading)">Solve</h3>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-[#59636e] max-w-2xl">SolverForge runs its route optimization and returns the solution.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-4 sm:gap-x-10 items-baseline rounded-none border border-[#f6f8fa] bg-white px-4 py-8 sm:px-6 sm:py-10 transition-transform duration-500 ease-out hover:-translate-y-0.5 hover:translate-x-0.5">
+        <span class="text-4xl sm:text-5xl leading-none tracking-tight text-[#1f883d]" style="font-family:var(--font-heading)">04</span>
+        <div>
+          <h3 class="text-2xl sm:text-3xl leading-tight text-[#0d1117]" style="font-family:var(--font-heading)">Return</h3>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-[#59636e] max-w-2xl">The result lands back in the chat as a readable answer.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-4 sm:gap-x-10 items-baseline rounded-none border border-[#f6f8fa] bg-white px-4 py-8 sm:px-6 sm:py-10 transition-transform duration-500 ease-out hover:-translate-y-0.5 hover:translate-x-0.5">
+        <span class="text-4xl sm:text-5xl leading-none tracking-tight text-[#1f883d]" style="font-family:var(--font-heading)">05</span>
+        <div>
+          <h3 class="text-2xl sm:text-3xl leading-tight text-[#0d1117]" style="font-family:var(--font-heading)">Draw</h3>
+          <p class="mt-3 text-base sm:text-lg leading-relaxed text-[#59636e] max-w-2xl">The same result renders on the map docked to the right of the conversation.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- lineage -->
+<section class="bg-[var(--background)] text-[var(--foreground)] py-24 md:py-40 overflow-hidden">
+  <!-- say: keeping the light scheme, adding the folder bar chart -->
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="uppercase tracking-widest text-xs text-[var(--muted-foreground)] mb-10">The docked view</p>
+
+    <h2 class="text-6xl md:text-8xl leading-[0.9] max-w-4xl" style="font-family:var(--font-heading)">
+      Chat on the left. Map on the right.
+    </h2>
+
+    <!-- say: two panes, chat as folder list, map outlined -->
+    <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-2 gap-0 border border-[var(--border)]">
+      <div class="bg-[var(--card)] p-8 md:p-12">
+        <p class="uppercase tracking-widest text-xs text-[var(--muted-foreground)] mb-8">Chat</p>
+        <ul class="space-y-0" aria-hidden="true">
+          <li class="flex items-center gap-3 py-3 border-b border-[var(--border)]">
+            <svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M2.5 6.5a1 1 0 0 1 1-1h4l1.5 1.5h7.5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1z" />
+            </svg>
+            <span class="text-base">Morning plan</span>
+          </li>
+          <li class="flex items-center gap-3 py-3 border-b border-[var(--border)]">
+            <svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M2.5 6.5a1 1 0 0 1 1-1h4l1.5 1.5h7.5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1z" />
+            </svg>
+            <span class="text-base">Depot stops</span>
+          </li>
+          <li class="flex items-center gap-3 py-3 border-b border-[var(--border)]">
+            <svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M2.5 6.5a1 1 0 0 1 1-1h4l1.5 1.5h7.5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1z" />
+            </svg>
+            <span class="text-base">Afternoon run</span>
+          </li>
+          <li class="flex items-center gap-3 py-3">
+            <svg viewBox="0 0 20 20" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M2.5 6.5a1 1 0 0 1 1-1h4l1.5 1.5h7.5a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1z" />
+            </svg>
+            <span class="text-base">Archive</span>
+          </li>
+        </ul>
+      </div>
+      <div class="bg-[var(--muted)] p-8 md:p-12">
+        <p class="uppercase tracking-widest text-xs text-[var(--muted-foreground)] mb-8">Map</p>
+        <svg viewBox="0 0 320 120" class="w-full h-auto" role="img" aria-label="A route drawn as a polyline with three stop markers">
+          <polyline points="12,96 78,58 150,86 214,34 300,70" fill="none" stroke="var(--foreground)" stroke-width="2" stroke-linejoin="miter" />
+          <rect x="6" y="90" width="12" height="12" fill="var(--accent)" />
+          <rect x="72" y="52" width="12" height="12" fill="var(--foreground)" />
+          <rect x="144" y="80" width="12" height="12" fill="var(--foreground)" />
+          <rect x="208" y="28" width="12" height="12" fill="var(--foreground)" />
+          <rect x="294" y="64" width="12" height="12" fill="var(--foreground)" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- say: square bars, four repo folders as the flow order -->
+    <div class="mt-16 md:mt-24 bg-[var(--foreground)] text-[var(--background)] p-8 md:p-12">
+      <p class="uppercase tracking-widest text-xs mb-10 opacity-80">Roles in the flow</p>
+      <ul class="space-y-6" role="list">
+        <li class="grid grid-cols-[7rem_1fr] md:grid-cols-[10rem_1fr] items-center gap-4">
+          <span class="text-base" style="font-family:var(--font-heading)">engine</span>
+          <span class="block" style="height:20px;width:100%;background:var(--accent)"></span>
+        </li>
+        <li class="grid grid-cols-[7rem_1fr] md:grid-cols-[10rem_1fr] items-center gap-4">
+          <span class="text-base" style="font-family:var(--font-heading)">dashboard</span>
+          <span class="block" style="height:20px;width:72%;background:var(--accent)"></span>
+        </li>
+        <li class="grid grid-cols-[7rem_1fr] md:grid-cols-[10rem_1fr] items-center gap-4">
+          <span class="text-base" style="font-family:var(--font-heading)">desktop</span>
+          <span class="block" style="height:20px;width:46%;background:var(--accent)"></span>
+        </li>
+        <li class="grid grid-cols-[7rem_1fr] md:grid-cols-[10rem_1fr] items-center gap-4">
+          <span class="text-base" style="font-family:var(--font-heading)">skills</span>
+          <span class="block" style="height:20px;width:24%;background:var(--accent)"></span>
+        </li>
+      </ul>
+      <p class="mt-10 text-sm leading-relaxed opacity-80 max-w-2xl">
+        Bar length shows each folder's share of the flow, from the engine that solves the route down to the skills that fill it in.
+      </p>
+    </div>
+
+    <!-- say: one line of copy, large left set, no button here -->
+    <p class="mt-16 md:mt-24 text-2xl md:text-4xl leading-tight max-w-5xl" style="font-family:var(--font-heading)">
+      They move together.
+    </p>
+
+    <p class="mt-8 text-base md:text-lg leading-relaxed max-w-2xl text-[var(--muted-foreground)]">
+      Reply to a solved route in the conversation and the map follows it; pan the map and the chat keeps its place. Ask for a change to the stops and the next solve redraws in the pane you are already looking at.
+    </p>
+
+    <!-- say: single text link out to contact, low-key -->
+    <a href="#" data-goto="contact" class="mt-12 inline-flex items-center min-h-[44px] text-base text-[var(--foreground)] underline underline-offset-4 decoration-[var(--border)] hover:decoration-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]">
+      Take the docked view for a spin
+    </a>
+  </div>
+</section>
+
+<!-- big-number -->
+<!-- retheming big number: graphite field, burnt-orange numeral drift -->
+<section data-layer="about-big-number" class="bg-[var(--foreground)] text-[var(--background)]">
+  <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+    <!-- oversized numeral anchors the section, headline set left beside it on desktop -->
+    <div class="grid gap-10 md:gap-16 md:grid-cols-[minmax(0,auto)_1fr] md:items-start">
+      <!-- slow drift on the figure only, honours reduced motion -->
+      <div class="shrink-0 motion-safe:animate-[drift_14s_ease-in-out_infinite]">
+        <p style="font-family:var(--font-heading)" class="text-[7rem] sm:text-[9rem] md:text-[11rem] leading-[0.85] tracking-tighter bg-[linear-gradient(160deg,var(--accent),color-mix(in_srgb,var(--accent)_35%,var(--background)))] bg-clip-text text-transparent">
+          04
+        </p>
+        <!-- small uppercase label under the count, muted caption -->
+        <p class="mt-3 text-sm uppercase tracking-widest text-[var(--muted-foreground)]">Folders</p>
+      </div>
+
+      <div class="max-w-xl">
+        <h2 style="font-family:var(--font-heading)" class="text-6xl sm:text-7xl md:text-8xl leading-[0.9] tracking-tight">
+          Four folders.
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-[var(--muted-foreground)]">
+          Read them in that order and the plugin explains itself.
+        </p>
+      </div>
+    </div>
+
+    <!-- the four folders, listed as rows with the keyed name first -->
+    <dl class="mt-14 md:mt-20 border-t border-[var(--muted-foreground)]/25">
+      <div class="grid gap-2 md:grid-cols-[16rem_1fr] md:gap-10 py-6 border-b border-[var(--muted-foreground)]/25">
+        <dt style="font-family:var(--font-heading)" class="text-xl leading-tight text-[var(--accent)]">engine</dt>
+        <dd class="text-base md:text-lg leading-relaxed text-[var(--muted-foreground)]">the SolverForge integration and route-solving logic.</dd>
+      </div>
+      <div class="grid gap-2 md:grid-cols-[16rem_1fr] md:gap-10 py-6 border-b border-[var(--muted-foreground)]/25">
+        <dt style="font-family:var(--font-heading)" class="text-xl leading-tight text-[var(--accent)]">dashboard</dt>
+        <dd class="text-base md:text-lg leading-relaxed text-[var(--muted-foreground)]">the docked chat-plus-map view.</dd>
+      </div>
+      <div class="grid gap-2 md:grid-cols-[16rem_1fr] md:gap-10 py-6 border-b border-[var(--muted-foreground)]/25">
+        <dt style="font-family:var(--font-heading)" class="text-xl leading-tight text-[var(--accent)]">desktop</dt>
+        <dd class="text-base md:text-lg leading-relaxed text-[var(--muted-foreground)]">the Hermes Agent desktop surface the plugin loads into.</dd>
+      </div>
+      <div class="grid gap-2 md:grid-cols-[16rem_1fr] md:gap-10 py-6 border-b border-[var(--muted-foreground)]/25">
+        <dt style="font-family:var(--font-heading)" class="text-xl leading-tight text-[var(--accent)]">skills</dt>
+        <dd class="text-base md:text-lg leading-relaxed text-[var(--muted-foreground)]">the skill definitions the agent reads when it handles a routing request.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ticket -->
+<!-- say: swapping the pale list for a dark #0d1117 command panel -->
+<section class="bg-[var(--primary)] text-[var(--primary-foreground)]">
+  <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+      <div class="lg:col-span-5">
+        <p class="uppercase tracking-widest text-xs mb-8 text-[var(--primary-foreground)]/70">Commands</p>
+        <h2 style="font-family:var(--font-heading)" class="text-6xl md:text-8xl leading-[0.9] tracking-tight">
+          The<br />commands.
+        </h2>
+        <!-- say: intro and outlined link kept exactly as before -->
+        <p class="mt-10 text-lg leading-relaxed max-w-md text-[var(--primary-foreground)]/80">
+          Install the plugin, then ask the agent to route. Every command is a chat message — no separate terminal session.
+        </p>
+        <a
+          href="#contact"
+          data-goto="contact"
+          class="mt-10 inline-flex min-h-[44px] items-center rounded-[var(--radius)] border border-[var(--primary-foreground)]/40 px-6 py-3 text-sm uppercase tracking-widest text-[var(--primary-foreground)] transition-colors hover:border-[var(--primary-foreground)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-foreground)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]"
+        >
+          Read the command reference
+        </a>
+        <p class="mt-4 text-sm text-[var(--primary-foreground)]/60">Command reference lives on the Contact page.</p>
+      </div>
+
+      <div class="lg:col-span-7 lg:col-start-7">
+        <!-- say: label above a square #0d1117 terminal panel -->
+        <p class="uppercase tracking-widest text-xs mb-4 text-[#59636e]">
+          Commands you reach for while the plugin is loaded
+        </p>
+
+        <div class="rounded-[var(--radius)] bg-[#0d1117] p-8 md:p-10">
+          <ul class="divide-y divide-white/10">
+            <li class="flex items-start gap-5 py-6 first:pt-0">
+              <span aria-hidden="true" class="mt-1 font-mono text-sm text-[#1f883d]">$</span>
+              <div>
+                <h3 style="font-family:var(--font-heading)" class="font-mono text-xl leading-tight text-white">Run a solve</h3>
+                <p class="mt-2 font-mono text-sm leading-relaxed text-white/70">Ask the agent to route.</p>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-5 py-6">
+              <span aria-hidden="true" class="mt-1 font-mono text-sm text-[#1f883d]">$</span>
+              <div>
+                <h3 style="font-family:var(--font-heading)" class="font-mono text-xl leading-tight text-white">Redraw the docked map</h3>
+                <p class="mt-2 font-mono text-sm leading-relaxed text-white/70">A chat message, not a terminal session.</p>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-5 py-6 last:pb-0">
+              <span aria-hidden="true" class="mt-1 font-mono text-sm text-[#1f883d]">$</span>
+              <div>
+                <h3 style="font-family:var(--font-heading)" class="font-mono text-xl leading-tight text-white">Check the SolverForge connection</h3>
+                <p class="mt-2 font-mono text-sm leading-relaxed text-white/70">Confirm the plugin is talking to the solver.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- say: closing note in grey sans beneath the panel -->
+        <p class="mt-4 text-sm text-[#59636e]">
+          Type any of these as a plain chat message.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- final-call -->
+<section class="relative overflow-hidden bg-[#0d1117] text-white" data-layer="about-final-call">
+  <!-- say: Deep ink band closes the page, glow drifting behind. -->
+  <div aria-hidden="true" class="pointer-events-none absolute -right-40 top-1/2 h-[36rem] w-[36rem] -translate-y-1/2 rounded-full bg-[#1f883d] opacity-20 blur-[120px] motion-safe:animate-[drift_28s_ease-in-out_infinite]"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-40">
+    <p class="uppercase tracking-widest text-xs md:text-sm text-[#1f883d]">Final call</p>
+
+    <h2 class="mt-8 text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-white" style="font-family:var(--font-heading)">
+      Read the repo.
+    </h2>
+
+    <!-- say: Four folders named plainly, no icons, one rule between. -->
+    <div class="mt-14 md:mt-20 border-t border-white/20 pt-8 md:pt-10">
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-10 text-xl md:text-2xl tracking-tight" style="font-family:var(--font-heading)">
+        <li>Engine</li>
+        <li>Dashboard</li>
+        <li>Desktop</li>
+        <li>Skills</li>
+      </ul>
+    </div>
+
+    <!-- say: Install routing lives on Contact; two links, one solid. -->
+    <div class="mt-14 md:mt-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <p class="max-w-xl text-base md:text-lg leading-relaxed text-white/80">
+        Install steps and the command reference are on <a href="#contact" data-goto="contact" class="underline underline-offset-4 decoration-[#1f883d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1f883d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117] rounded-[var(--radius)]">Contact</a>.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#contact" data-goto="contact" class="inline-flex min-h-[44px] items-center justify-center bg-[#1f883d] px-8 py-4 text-base font-medium text-white rounded-[var(--radius)] hover:bg-[#1a7a35] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]" style="font-family:var(--font-heading)">Install</a>
+        <a href="#home" data-goto="home" class="inline-flex min-h-[44px] items-center justify-center border border-white/40 px-8 py-4 text-base font-medium text-white rounded-[var(--radius)] hover:border-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]" style="font-family:var(--font-heading)">Back to start</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="bg-[var(--primary)] text-[var(--primary-foreground)]">
+  <div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <!-- say: Footer as a deep ink block, keeping poster rhythm. -->
+    <div class="grid gap-12 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-7">
+        <p class="text-4xl md:text-6xl leading-[0.9] tracking-tight" style="font-family:var(--font-heading)">hermes-solverforge-routing</p>
+        <p class="mt-6 text-lg leading-relaxed max-w-md opacity-80">a Hermes Agent plugin</p>
+        <p class="mt-8 text-base leading-relaxed max-w-md opacity-80">Static showcase. No accounts, no tracking, no outside services.</p>
+      </div>
+      <div class="md:col-span-5 md:pl-8">
+        <!-- say: Plain text link stack, no icon clutter. -->
+        <p class="text-xs uppercase tracking-widest opacity-60">Links</p>
+        <ul class="mt-6 space-y-1">
+          <li>
+            <a href="#" data-goto="home" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Overview</a>
+          </li>
+          <li>
+            <a href="#" data-goto="about" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">The Plugin</a>
+          </li>
+          <li>
+            <a href="#" data-goto="contact" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Contact</a>
+          </li>
+          <li>
+            <a href="/docs" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Docs</a>
+          </li>
+          <li>
+            <a href="https://github.com" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Repository</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- say: Thin hairline rule closes the footer cleanly. -->
+    <div class="mt-16 border-t border-[var(--primary-foreground)]/20 pt-8">
+      <p class="text-sm opacity-60">Static showcase. No accounts, no tracking, no outside services.</p>
+    </div>
+  </div>
+</footer>
+<script>
+// layout: a text panel floated over a map or picture moves beside it when it would cover other text
+(() => {
+  const guard = function swarmLayout(root, report) {
+  const doc = root.ownerDocument || root
+  const view = doc.defaultView
+  // a real sentence or name, not a pin number or a one-word label
+  const prose = el => [...el.querySelectorAll('*'), el].some(x => [...x.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length >= 12))
+  const area = r => Math.max(0, r.width) * Math.max(0, r.height)
+  const meet = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top))
+  // on screen: not hidden, not faded out, not inside a closed <details> menu
+  const shown = el => el.checkVisibility ? el.checkVisibility({ opacityProperty: true, visibilityProperty: true }) : !el.closest('details:not([open])') && view.getComputedStyle(el).display !== 'none'
+
+  // every visible run of text in a section, with its box
+  function texts(section) {
+    const out = [], walk = doc.createTreeWalker(section, 4)
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      if (!n.textContent.trim() || !n.parentElement || !shown(n.parentElement)) continue
+      const r = doc.createRange()
+      r.selectNodeContents(n)
+      const b = r.getBoundingClientRect()
+      if (area(b) > 0) out.push({ node: n, box: b })
+    }
+    return out
+  }
+
+  const clip = t => t.replace(/\s+/g, ' ').trim().slice(0, 48)
+  const found = []
+  for (const section of [...root.children]) {
+    // menus and dropdowns in the nav are meant to sit over the page
+    if (/^(SCRIPT|STYLE|LINK|TEMPLATE|NAV|HEADER)$/.test(section.tagName) || section.dataset.layer === 'nav') continue
+    // text panels the design positions absolutely, outermost first
+    const floats = [...section.querySelectorAll('*')].filter(el => !el.dataset.swarmFlow && view.getComputedStyle(el).position === 'absolute' && shown(el) && prose(el))
+    const outer = floats.filter(el => !floats.some(o => o !== el && o.contains(el)))
+    if (!outer.length) continue
+    const runs = texts(section)
+    const after = new Map()
+    for (const el of outer) {
+      const box = el.getBoundingClientRect()
+      // a badge poking out of its card is fine; a panel on top of other text is not
+      const hit = runs.find(t => !el.contains(t.node) && meet(box, t.box) > 0.25 * area(t.box))
+      if (!hit) continue
+      found.push({ layer: section.dataset.layer || null, index: [...root.children].indexOf(section), panel: clip(el.textContent), covers: clip(hit.node.textContent) })
+      if (report) continue
+      const host = el.offsetParent, hb = host?.getBoundingClientRect()
+      el.dataset.swarmFlow = '1'
+      Object.assign(el.style, { position: 'relative', inset: 'auto', transform: 'none', width: 'auto', maxWidth: '100%', zIndex: 'auto' })
+      // inside the section, the panel leaves the box and sits just above or below it
+      if (!host || host === section || !section.contains(host) || host.contains(section)) continue
+      if (box.top + box.height / 2 < hb.top + hb.height / 2 && !after.has(host)) {
+        host.before(el)
+        el.style.margin = '0 0 16px'
+      } else {
+        ;(after.get(host) || host).after(el)
+        after.set(host, el)
+        el.style.margin = '16px 0 0'
+      }
+    }
+  }
+  return found
+}
+  const run = () => guard(document.body)
+  run()
+  document.fonts && document.fonts.ready.then(run)
+  let t
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(run, 150) })
+})()
+
+// motion: sections reveal as they scroll in
+addEventListener('load', () => (function swarmMotion(root, preset) {
+  const p = { gentle: { rise: 18, scale: 1, ms: 750, step: 70, ease: 'cubic-bezier(.2,.7,.2,1)' }, snappy: { rise: 36, scale: 0.96, ms: 520, step: 55, ease: 'cubic-bezier(.34,1.56,.64,1)' } }[preset] || { rise: 18, scale: 1, ms: 750, step: 70, ease: 'ease' }
+  const doc = root.ownerDocument || root
+  const html = doc.documentElement
+  html.style.setProperty('--m-rise', `${p.rise}px`)
+  html.style.setProperty('--m-scale', String(p.scale))
+  html.style.setProperty('--m-ms', `${p.ms}ms`)
+  html.style.setProperty('--m-ease', p.ease)
+  const view = doc.defaultView
+  if (view.matchMedia && view.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const PICK = 'h1,h2,h3,h4,p,img,button,[data-goto],li,article,figure,blockquote,form,table,svg'
+  // the page's top-level blocks are its sections
+  const sections = [...root.children].filter(el => !/^(SCRIPT|STYLE|LINK|TEMPLATE)$/.test(el.tagName))
+  // once revealed, an element drops the reveal so its hover moves without a delay
+  const settle = el => {
+    const done = e => {
+      if (e.target !== el) return
+      el.removeEventListener('transitionend', done)
+      el.classList.remove('m-t', 'm-in')
+      el.style.removeProperty('--m-delay')
+    }
+    el.addEventListener('transitionend', done)
+  }
+  const show = s => s.querySelectorAll('.m-t:not(.m-in)').forEach(el => { settle(el); el.classList.add('m-in') })
+  const io = new view.IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue
+      io.unobserve(e.target)
+      show(e.target)
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
+  sections.forEach((s, si) => {
+    if (s.dataset.mDone) return
+    s.dataset.mDone = '1'
+    // the nav is there from the start
+    if (/^(nav|header)$/i.test(s.tagName) || s.dataset.layer === 'nav' || (si === 0 && s.querySelector('nav'))) return
+    let n = 0
+    for (const el of s.querySelectorAll(PICK)) {
+      if (n >= 14) break
+      if (el.closest('.m-t') || (el.tagName.toLowerCase() !== 'svg' && el.closest('svg'))) continue
+      // tiny things, and things the design already moves or positions with a transform, stay put
+      if (el.getBoundingClientRect().height < 4 || view.getComputedStyle(el).transform !== 'none') continue
+      el.classList.add('m-t')
+      el.style.setProperty('--m-delay', `${Math.min(n, 10) * p.step}ms`)
+      n++
+    }
+    // the first screen plays as the page opens; the rest as it scrolls in
+    if (s.getBoundingClientRect().top < view.innerHeight * 0.9) view.requestAnimationFrame(() => view.requestAnimationFrame(() => show(s)))
+    else io.observe(s)
+  })
+})(document.body, "gentle"))
+
+// buttons and links made on the canvas name the page they go to
+const pages = {"home":"index.html","about":"about.html","contact":"contact.html"}
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-goto]')
+  if (go && pages[go.dataset.goto]) { e.preventDefault(); location.href = pages[go.dataset.goto] }
+})
+document.addEventListener('submit', e => e.preventDefault())
+</script>
+</body>
+</html>

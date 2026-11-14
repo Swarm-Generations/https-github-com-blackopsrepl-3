@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hermes-solverforge-routing, a Hermes Agent plugin</title>
+<!-- seo -->
+<meta name="description" content="A Hermes Agent plugin that sends chat requests to SolverForge for route optimization and shows the answer on a docked chat-plus-map view.">
+<link rel="canonical" href="https://pukujan.github.io/https-github-com-blackopsrepl-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Https Github Com Blackopsrepl">
+<meta property="og:title" content="hermes-solverforge-routing, a Hermes Agent plugin">
+<meta property="og:description" content="A Hermes Agent plugin that sends chat requests to SolverForge for route optimization and shows the answer on a docked chat-plus-map view.">
+<meta property="og:url" content="https://pukujan.github.io/https-github-com-blackopsrepl-3/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hermes-solverforge-routing, a Hermes Agent plugin">
+<meta name="twitter:description" content="A Hermes Agent plugin that sends chat requests to SolverForge for route optimization and shows the answer on a docked chat-plus-map view.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1f883d">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Https Github Com Blackopsrepl","url":"https://pukujan.github.io/https-github-com-blackopsrepl-3/","inLanguage":"en"},{"@type":"SoftwareApplication","name":"Https Github Com Blackopsrepl","description":"A Hermes Agent plugin that sends chat requests to SolverForge for route optimization and shows the answer on a docked chat-plus-map view.","url":"https://pukujan.github.io/https-github-com-blackopsrepl-3/"}]}</script>
+<!-- /seo -->
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --primary: #1f883d;
+  --primary-foreground: #ffffff;
+  --muted: #161b22;
+  --muted-foreground: #8b949e;
+  --border: #30363d;
+  --accent: #1f883d;
+  --card: #111820;
+  --font-heading: 'Inter', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --radius: 0px;
+}
+html, body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-body); }
+
+[data-goto],button,a[href]{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+[data-goto]:hover,button:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.m-t{opacity:0;transform:translateY(var(--m-rise)) scale(var(--m-scale));transition:opacity var(--m-ms) var(--m-ease),transform var(--m-ms) var(--m-ease);transition-delay:var(--m-delay,0ms)}
+img.m-t{transform:scale(1.06)}
+.m-t.m-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.m-t{opacity:1;transform:none;transition:none}[data-goto]:hover,button:hover{transform:none}}
+</style>
+</head>
+<body>
+<!-- navigation -->
+<nav class="bg-[var(--background)] border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6 h-16">
+    <a href="#" data-goto="home" class="text-[var(--foreground)] text-lg leading-tight tracking-tight truncate" style="font-family:var(--font-heading)">hermes-solverforge-routing</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm">
+      <li><a href="#" data-goto="home" class="text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">Overview</a></li>
+      <li><a href="#" data-goto="about" class="text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">The Plugin</a></li>
+      <li><a href="#" data-goto="contact" class="text-[var(--foreground)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">Contact</a></li>
+    </ul>
+    <a href="#" class="sr-only">hermes-solverforge-routing</a>
+    <a href="#" data-goto="contact" class="inline-flex items-center min-h-11 px-5 bg-[var(--primary)] text-[var(--primary-foreground)] text-sm uppercase tracking-widest rounded-[var(--radius)] hover:bg-[var(--foreground)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">Install</a>
+  </div>
+</nav>
+<!-- say: built the edge-to-edge nav bar with brand and links -->
+<!-- say: kept short mobile nav with call-to-action -->
+<!-- say: ensured the focus states meet accessibility -->
+</nav>
+
+<!-- hero -->
+<!-- Hero layer: dark graphite field, burnt-orange glow behind oversized grotesque type -->
+<section class="relative overflow-hidden bg-[#0d1117] text-[#f6f8fa]">
+  <!-- Warm burnt-orange glow drifting slowly behind the headline -->
+  <div class="pointer-events-none absolute -top-48 -left-40 w-[44rem] max-w-[130vw] h-[44rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(214,93,14,0.38),rgba(214,93,14,0.14)_45%,rgba(214,93,14,0)_70%)] blur-2xl motion-safe:animate-[drift_28s_ease-in-out_infinite_alternate]" aria-hidden="true"></div>
+  <style>
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(7rem, 4rem, 0) scale(1.15); }
+    }
+  </style>
+
+  <div class="relative max-w-7xl mx-auto px-6 pt-24 pb-20 md:pt-36 md:pb-28">
+    <!-- Eyebrow label names the plugin, small and tracked -->
+    <p class="uppercase tracking-widest text-xs md:text-sm text-[#8b949e]">A Hermes Agent plugin</p>
+
+    <!-- The page's single h1: the repo slug, set at poster scale -->
+    <h1 style="font-family:var(--font-heading)" class="mt-8 text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight break-words">
+      hermes-solverforge-routing.
+    </h1>
+
+    <!-- One line summary, drifting left with generous space above -->
+    <p class="mt-10 md:mt-14 max-w-2xl text-lg md:text-2xl leading-relaxed text-[#f6f8fa]">
+      Chat goes in, <span class="text-[#e8843c]">SolverForge</span> routes it, the map answers.
+    </p>
+
+    <p class="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-[#8b949e]">
+      Overview of the plugin for developers reading the repo today.
+    </p>
+
+    <!-- Two actions: solid accent and an outline companion -->
+    <div class="mt-12 md:mt-16 flex flex-col sm:flex-row sm:items-center gap-4">
+      <a href="#" data-goto="about"
+         class="inline-flex items-center justify-center min-h-[44px] px-8 py-4 rounded-[var(--radius)] bg-[#d65d0e] text-white text-base md:text-lg font-medium hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d65d0e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]">
+        Read the plugin
+      </a>
+      <a href="#" data-goto="contact"
+         class="inline-flex items-center justify-center min-h-[44px] px-8 py-4 rounded-[var(--radius)] border border-[#30363d] text-[#f6f8fa] text-base md:text-lg font-medium hover:bg-[#161b22] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d65d0e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]">
+        Install
+      </a>
+    </div>
+  </div>
+
+  <!-- Decorative route glyph: monoline SVG hinting a path to a map pin -->
+  <svg class="pointer-events-none absolute right-6 bottom-8 hidden md:block w-40 h-40 text-[#30363d]" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M10 130 L60 130 L60 70 L110 70 L110 30 L150 30" stroke-linecap="square"/>
+    <circle cx="150" cy="30" r="6" fill="currentColor" stroke="none"/>
+    <circle cx="10" cy="130" r="6" fill="currentColor" stroke="none"/>
+  </svg>
+</section>
+
+<!-- manifesto -->
+<section class="bg-[#f6f8fa] text-[#59636e] py-24 md:py-40 overflow-hidden">
+  <!-- say: pale band now, square edges, ink text -->
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-xs uppercase tracking-widest text-[#1f883d] mb-10">How it moves</p>
+    <h2 class="text-6xl md:text-8xl lg:text-9xl leading-[0.9] max-w-4xl text-[#1f2328]" style="font-family:var(--font-heading)">
+      You ask in chat.
+    </h2>
+    <!-- say: three beats kept, off-centre rhythm unchanged -->
+    <div class="mt-16 md:mt-24 md:grid md:grid-cols-12 gap-10">
+      <p class="md:col-span-7 md:col-start-6 text-lg md:text-xl leading-relaxed text-[#59636e] max-w-xl">
+        The request reaches SolverForge. The route comes back drawn on a docked map beside the conversation.
+      </p>
+      <!-- say: same hairline rule, retinted for the pale field -->
+      <div class="mt-10 md:mt-16 md:col-span-9 md:col-start-4">
+        <div class="h-px w-full bg-[#59636e] opacity-30"></div>
+        <p class="mt-8 md:mt-10 text-lg md:text-xl leading-relaxed max-w-2xl text-[#59636e]">
+          No second window, no copy-paste between tools. The plugin holds the flow in one view so you can watch the answer arrive.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- big-number -->
+<!-- Retheming this block to dark graphite with a burnt-orange sweep on the numeral. -->
+<section class="bg-[#1c1c1c] text-[#f5f2ec] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 py-24 md:py-40">
+    <!-- The tracked label keeps its small uppercase treatment, now muted on graphite. -->
+    <p class="text-xs uppercase tracking-widest text-[#a8a49c]">One plugin. One flow.</p>
+    <!-- The decisive touch: a poster-scale figure swept with burnt orange, drifting slowly. -->
+    <h2
+      class="mt-8 max-w-5xl text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight"
+      style="font-family:var(--font-heading)"
+    >
+      <span class="block animate-[drift_14s_ease-in-out_infinite] bg-clip-text text-transparent" style="background-image:linear-gradient(100deg,#c2410c,#f97316,#ffb27a,#f97316,#c2410c);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;animation:driftsweep 18s ease-in-out infinite alternate, drift 14s ease-in-out infinite;">
+        Chat on the left,
+      </span>
+      <span class="block animate-[drift_14s_ease-in-out_infinite] bg-clip-text text-transparent [animation-delay:-4s]" style="background-image:linear-gradient(100deg,#c2410c,#f97316,#ffb27a,#f97316,#c2410c);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;animation:driftsweep 18s ease-in-out infinite alternate, drift 14s ease-in-out infinite;">
+        map on the right,
+      </span>
+      <span class="block animate-[drift_14s_ease-in-out_infinite] bg-clip-text text-transparent [animation-delay:-8s]" style="background-image:linear-gradient(100deg,#c2410c,#f97316,#ffb27a,#f97316,#c2410c);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;animation:driftsweep 18s ease-in-out infinite alternate, drift 14s ease-in-out infinite;">
+        SolverForge in between.
+      </span>
+    </h2>
+    <!-- Caption sits off to the side on a thin rule, square and sans. -->
+    <div class="mt-12 md:mt-16 md:pl-[33%] border-t border-[#f5f2ec]/20 pt-8">
+      <p class="max-w-xl text-lg leading-relaxed text-[#a8a49c]">
+        Everything the plugin does sits in that docked view.
+      </p>
+    </div>
+  </div>
+  <style>
+    @keyframes drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0.5rem,-0.25rem,0)}}
+    @keyframes driftsweep{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+    @media (prefers-reduced-motion: reduce){
+      section h2 span{animation:none !important}
+    }
+  </style>
+</section>
+
+<!-- poster-wall -->
+<section class="bg-[var(--foreground)] py-20 md:py-32">
+  <!-- say: dark field, warm ink, accent only on one eyebrow -->
+  <div class="mx-auto max-w-7xl px-6">
+    <p class="text-xs uppercase tracking-widest text-[var(--accent)]">Reference wall</p>
+    <h2 class="mt-6 max-w-4xl leading-[0.9] text-6xl text-[var(--background)] md:text-8xl" style="font-family:var(--font-heading)">A folder list you can read in a minute.</h2>
+    <!-- say: poster tiles with soft burnt-orange wash, hover drift -->
+    <ul class="mt-16 grid gap-6 md:grid-cols-3">
+      <li class="group relative flex flex-col overflow-hidden border border-[var(--background)]/15 p-8 transition-transform duration-500 ease-out md:group-hover:-translate-y-1 group-focus-within:-translate-y-1">
+        <span aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,var(--accent)_0%,transparent_70%)] opacity-40 transition-opacity duration-500 ease-out md:opacity-20 md:group-hover:opacity-40 group-focus-within:opacity-40"></span>
+        <span class="relative block text-xs uppercase tracking-widest text-[var(--accent)]">01</span>
+        <h3 class="relative mt-4 text-3xl leading-tight text-[var(--background)] md:text-4xl" style="font-family:var(--font-heading)">Docked chat plus map</h3>
+        <p class="relative mt-4 text-base leading-relaxed text-[var(--background)]/70 md:text-lg">Ask in plain words; results land beside the thread.</p>
+      </li>
+      <li class="group relative flex flex-col overflow-hidden border border-[var(--background)]/15 bg-[var(--background)]/[0.04] p-8 transition-transform duration-500 ease-out md:group-hover:-translate-y-1 group-focus-within:-translate-y-1">
+        <span aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_0%,var(--accent)_0%,transparent_70%)] opacity-40 transition-opacity duration-500 ease-out md:opacity-20 md:group-hover:opacity-40 group-focus-within:opacity-40"></span>
+        <span class="relative block text-xs uppercase tracking-widest text-[var(--accent)]">02</span>
+        <h3 class="relative mt-4 text-3xl leading-tight text-[var(--background)] md:text-4xl" style="font-family:var(--font-heading)">SolverForge route optimization</h3>
+        <p class="relative mt-4 text-base leading-relaxed text-[var(--background)]/70 md:text-lg">The solver does the ordering; the plugin does the wiring.</p>
+      </li>
+      <li class="group relative flex flex-col overflow-hidden border border-[var(--background)]/15 p-8 transition-transform duration-500 ease-out md:group-hover:-translate-y-1 group-focus-within:-translate-y-1">
+        <span aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,var(--accent)_0%,transparent_70%)] opacity-40 transition-opacity duration-500 ease-out md:opacity-20 md:group-hover:opacity-40 group-focus-within:opacity-40"></span>
+        <span class="relative block text-xs uppercase tracking-widest text-[var(--accent)]">03</span>
+        <h3 class="relative mt-4 text-3xl leading-tight text-[var(--background)] md:text-4xl" style="font-family:var(--font-heading)">Commands you can run from the chat</h3>
+        <p class="relative mt-4 text-base leading-relaxed text-[var(--background)]/70 md:text-lg">Short, typed, no separate terminal window.</p>
+      </li>
+    </ul>
+    <!-- say: install and docs block on a light hairline divider -->
+    <div class="mt-20 grid gap-10 border-t border-[var(--background)]/15 pt-10 md:grid-cols-2 md:gap-16">
+      <div>
+        <h3 class="text-3xl leading-tight text-[var(--background)] md:text-4xl" style="font-family:var(--font-heading)">Install steps for your agent</h3>
+        <p class="mt-4 max-w-md text-base leading-relaxed text-[var(--background)]/70 md:text-lg">Follow the sequence in the order written and the plugin registers itself.</p>
+      </div>
+      <div class="flex flex-col justify-end gap-6">
+        <h3 class="text-3xl leading-tight text-[var(--background)] md:text-4xl" style="font-family:var(--font-heading)">Docs links in the repo</h3>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" data-goto="about" class="inline-flex min-h-11 items-center bg-[var(--background)] px-6 text-[var(--foreground)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--foreground)]">What the plugin does</a>
+          <a href="#" data-goto="contact" class="inline-flex min-h-11 items-center border border-[var(--background)]/40 px-6 text-[var(--background)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--foreground)]">Ask about the repo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- lineup -->
+<!-- Converting the ink band to the light palette per the design comment -->
+<section class="bg-[var(--background)] text-[var(--foreground)]">
+  <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+    <!-- Opening line keeps its poster scale on the white field -->
+    <h2 class="text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight max-w-4xl" style="font-family:var(--font-heading)">The repo folders.</h2>
+
+    <!-- Four folders now read as white rows with hairline dividers -->
+    <div class="mt-14 md:mt-20 max-w-4xl md:pl-[8%]">
+      <div class="bg-[var(--card)] border-t border-[#f6f8fa] px-0 py-6 transition-colors hover:bg-[#f6f8fa]">
+        <h3 class="text-2xl md:text-3xl leading-tight" style="font-family:var(--font-heading)">engine</h3>
+        <p class="mt-3 text-base md:text-lg leading-relaxed text-[#59636e]">the routing core that talks to SolverForge.</p>
+      </div>
+      <div class="bg-[var(--card)] border-t border-[#f6f8fa] px-0 py-6 transition-colors hover:bg-[#f6f8fa]">
+        <h3 class="text-2xl md:text-3xl leading-tight" style="font-family:var(--font-heading)">dashboard</h3>
+        <p class="mt-3 text-base md:text-lg leading-relaxed text-[#59636e]">the docked chat-plus-map view.</p>
+      </div>
+      <div class="bg-[var(--card)] border-t border-[#f6f8fa] px-0 py-6 transition-colors hover:bg-[#f6f8fa]">
+        <h3 class="text-2xl md:text-3xl leading-tight" style="font-family:var(--font-heading)">desktop</h3>
+        <p class="mt-3 text-base md:text-lg leading-relaxed text-[#59636e]">the desktop surface for the plugin.</p>
+      </div>
+      <!-- Fourth row closes the list, divider above only -->
+      <div class="bg-[var(--card)] border-t border-[#f6f8fa] px-0 py-6 transition-colors hover:bg-[#f6f8fa]">
+        <h3 class="text-2xl md:text-3xl leading-tight" style="font-family:var(--font-heading)">skills</h3>
+        <p class="mt-3 text-base md:text-lg leading-relaxed text-[#59636e]">the agent skills that wire chat requests to the solver.</p>
+      </div>
+    </div>
+
+    <!-- Closing line and single link stay paired on the light ground -->
+    <div class="mt-16 md:mt-24 flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:pl-[8%]">
+      <p class="text-xl md:text-3xl leading-tight max-w-xl" style="font-family:var(--font-heading)">Each folder does one job, each one opens with a README.</p>
+      <a href="#" data-goto="about" class="inline-flex items-center justify-center min-h-11 px-7 py-3 border border-[#59636e] text-[var(--foreground)] uppercase text-xs tracking-widest hover:border-[#1f883d] hover:text-[#1f883d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1f883d] rounded-[var(--radius)]" style="font-family:var(--font-heading)">The Plugin</a>
+    </div>
+  </div>
+</section>
+
+<!-- final-call -->
+<section class="relative overflow-hidden bg-[#0d1117] text-white">
+  <!-- say: drifting glow behind the band, accent green, kept as decoration -->
+  <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 h-[28rem] w-[28rem]" style="background:radial-gradient(circle, #1f883d 0%, rgba(31,136,61,0.18) 42%, rgba(31,136,61,0) 70%); filter:blur(48px); animation:drift 18s ease-in-out infinite alternate;"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 h-[22rem] w-[22rem]" style="background:radial-gradient(circle, #1f883d 0%, rgba(31,136,61,0.14) 45%, rgba(31,136,61,0) 72%); filter:blur(56px); animation:drift 24s ease-in-out infinite alternate-reverse;"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 py-24 md:py-40">
+    <!-- say: laying the final call as one tight imperative list -->
+    <p class="text-xs uppercase tracking-widest text-white/60">Final call</p>
+
+    <h2 class="mt-8 text-6xl md:text-8xl leading-[0.9] max-w-4xl" style="font-family:var(--font-heading)">
+      Open the repo. Read the flow. Run the install. Start routing.
+    </h2>
+
+    <!-- say: two actions only, one solid and one outline -->
+    <div class="mt-14 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+      <a href="#" data-goto="contact"
+         class="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius)] bg-[#1f883d] px-8 py-4 text-base text-white hover:bg-[#1a7333] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f883d]">
+        Install
+      </a>
+      <a href="#" data-goto="about"
+         class="inline-flex min-h-[44px] items-center justify-center rounded-[var(--radius)] border border-white/25 px-8 py-4 text-base text-white hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f883d]">
+        The Plugin
+      </a>
+    </div>
+
+    <!-- say: closing the poster with a thin ruled band -->
+    <div class="mt-24 border-t border-white/15 pt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white" aria-hidden="true">
+        <path d="M4 14h20M14 4v20" />
+        <circle cx="14" cy="14" r="10" />
+      </svg>
+      <span class="text-sm text-white/60 tracking-wide">Hermes Agent routing, one request at a time.</span>
+    </div>
+  </div>
+
+  <style>
+    @keyframes drift {
+      0% { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(60px,40px,0) scale(1.12); }
+    }
+  </style>
+</section>
+
+<!-- footer -->
+<footer class="bg-[var(--primary)] text-[var(--primary-foreground)]">
+  <div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <!-- say: Footer as a deep ink block, keeping poster rhythm. -->
+    <div class="grid gap-12 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-7">
+        <p class="text-4xl md:text-6xl leading-[0.9] tracking-tight" style="font-family:var(--font-heading)">hermes-solverforge-routing</p>
+        <p class="mt-6 text-lg leading-relaxed max-w-md opacity-80">a Hermes Agent plugin</p>
+        <p class="mt-8 text-base leading-relaxed max-w-md opacity-80">Static showcase. No accounts, no tracking, no outside services.</p>
+      </div>
+      <div class="md:col-span-5 md:pl-8">
+        <!-- say: Plain text link stack, no icon clutter. -->
+        <p class="text-xs uppercase tracking-widest opacity-60">Links</p>
+        <ul class="mt-6 space-y-1">
+          <li>
+            <a href="#" data-goto="home" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Overview</a>
+          </li>
+          <li>
+            <a href="#" data-goto="about" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">The Plugin</a>
+          </li>
+          <li>
+            <a href="#" data-goto="contact" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Contact</a>
+          </li>
+          <li>
+            <a href="/docs" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Docs</a>
+          </li>
+          <li>
+            <a href="https://github.com" class="inline-flex min-h-[44px] items-center text-lg hover:opacity-100 opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--primary)]">Repository</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- say: Thin hairline rule closes the footer cleanly. -->
+    <div class="mt-16 border-t border-[var(--primary-foreground)]/20 pt-8">
+      <p class="text-sm opacity-60">Static showcase. No accounts, no tracking, no outside services.</p>
+    </div>
+  </div>
+</footer>
+<script>
+// layout: a text panel floated over a map or picture moves beside it when it would cover other text
+(() => {
+  const guard = function swarmLayout(root, report) {
+  const doc = root.ownerDocument || root
+  const view = doc.defaultView
+  // a real sentence or name, not a pin number or a one-word label
+  const prose = el => [...el.querySelectorAll('*'), el].some(x => [...x.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length >= 12))
+  const area = r => Math.max(0, r.width) * Math.max(0, r.height)
+  const meet = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top))
+  // on screen: not hidden, not faded out, not inside a closed <details> menu
+  const shown = el => el.checkVisibility ? el.checkVisibility({ opacityProperty: true, visibilityProperty: true }) : !el.closest('details:not([open])') && view.getComputedStyle(el).display !== 'none'
+
+  // every visible run of text in a section, with its box
+  function texts(section) {
+    const out = [], walk = doc.createTreeWalker(section, 4)
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      if (!n.textContent.trim() || !n.parentElement || !shown(n.parentElement)) continue
+      const r = doc.createRange()
+      r.selectNodeContents(n)
+      const b = r.getBoundingClientRect()
+      if (area(b) > 0) out.push({ node: n, box: b })
+    }
+    return out
+  }
+
+  const clip = t => t.replace(/\s+/g, ' ').trim().slice(0, 48)
+  const found = []
+  for (const section of [...root.children]) {
+    // menus and dropdowns in the nav are meant to sit over the page
+    if (/^(SCRIPT|STYLE|LINK|TEMPLATE|NAV|HEADER)$/.test(section.tagName) || section.dataset.layer === 'nav') continue
+    // text panels the design positions absolutely, outermost first
+    const floats = [...section.querySelectorAll('*')].filter(el => !el.dataset.swarmFlow && view.getComputedStyle(el).position === 'absolute' && shown(el) && prose(el))
+    const outer = floats.filter(el => !floats.some(o => o !== el && o.contains(el)))
+    if (!outer.length) continue
+    const runs = texts(section)
+    const after = new Map()
+    for (const el of outer) {
+      const box = el.getBoundingClientRect()
+      // a badge poking out of its card is fine; a panel on top of other text is not
+      const hit = runs.find(t => !el.contains(t.node) && meet(box, t.box) > 0.25 * area(t.box))
+      if (!hit) continue
+      found.push({ layer: section.dataset.layer || null, index: [...root.children].indexOf(section), panel: clip(el.textContent), covers: clip(hit.node.textContent) })
+      if (report) continue
+      const host = el.offsetParent, hb = host?.getBoundingClientRect()
+      el.dataset.swarmFlow = '1'
+      Object.assign(el.style, { position: 'relative', inset: 'auto', transform: 'none', width: 'auto', maxWidth: '100%', zIndex: 'auto' })
+      // inside the section, the panel leaves the box and sits just above or below it
+      if (!host || host === section || !section.contains(host) || host.contains(section)) continue
+      if (box.top + box.height / 2 < hb.top + hb.height / 2 && !after.has(host)) {
+        host.before(el)
+        el.style.margin = '0 0 16px'
+      } else {
+        ;(after.get(host) || host).after(el)
+        after.set(host, el)
+        el.style.margin = '16px 0 0'
+      }
+    }
+  }
+  return found
+}
+  const run = () => guard(document.body)
+  run()
+  document.fonts && document.fonts.ready.then(run)
+  let t
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(run, 150) })
+})()
+
+// motion: sections reveal as they scroll in
+addEventListener('load', () => (function swarmMotion(root, preset) {
+  const p = { gentle: { rise: 18, scale: 1, ms: 750, step: 70, ease: 'cubic-bezier(.2,.7,.2,1)' }, snappy: { rise: 36, scale: 0.96, ms: 520, step: 55, ease: 'cubic-bezier(.34,1.56,.64,1)' } }[preset] || { rise: 18, scale: 1, ms: 750, step: 70, ease: 'ease' }
+  const doc = root.ownerDocument || root
+  const html = doc.documentElement
+  html.style.setProperty('--m-rise', `${p.rise}px`)
+  html.style.setProperty('--m-scale', String(p.scale))
+  html.style.setProperty('--m-ms', `${p.ms}ms`)
+  html.style.setProperty('--m-ease', p.ease)
+  const view = doc.defaultView
+  if (view.matchMedia && view.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const PICK = 'h1,h2,h3,h4,p,img,button,[data-goto],li,article,figure,blockquote,form,table,svg'
+  // the page's top-level blocks are its sections
+  const sections = [...root.children].filter(el => !/^(SCRIPT|STYLE|LINK|TEMPLATE)$/.test(el.tagName))
+  // once revealed, an element drops the reveal so its hover moves without a delay
+  const settle = el => {
+    const done = e => {
+      if (e.target !== el) return
+      el.removeEventListener('transitionend', done)
+      el.classList.remove('m-t', 'm-in')
+      el.style.removeProperty('--m-delay')
+    }
+    el.addEventListener('transitionend', done)
+  }
+  const show = s => s.querySelectorAll('.m-t:not(.m-in)').forEach(el => { settle(el); el.classList.add('m-in') })
+  const io = new view.IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue
+      io.unobserve(e.target)
+      show(e.target)
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
+  sections.forEach((s, si) => {
+    if (s.dataset.mDone) return
+    s.dataset.mDone = '1'
+    // the nav is there from the start
+    if (/^(nav|header)$/i.test(s.tagName) || s.dataset.layer === 'nav' || (si === 0 && s.querySelector('nav'))) return
+    let n = 0
+    for (const el of s.querySelectorAll(PICK)) {
+      if (n >= 14) break
+      if (el.closest('.m-t') || (el.tagName.toLowerCase() !== 'svg' && el.closest('svg'))) continue
+      // tiny things, and things the design already moves or positions with a transform, stay put
+      if (el.getBoundingClientRect().height < 4 || view.getComputedStyle(el).transform !== 'none') continue
+      el.classList.add('m-t')
+      el.style.setProperty('--m-delay', `${Math.min(n, 10) * p.step}ms`)
+      n++
+    }
+    // the first screen plays as the page opens; the rest as it scrolls in
+    if (s.getBoundingClientRect().top < view.innerHeight * 0.9) view.requestAnimationFrame(() => view.requestAnimationFrame(() => show(s)))
+    else io.observe(s)
+  })
+})(document.body, "gentle"))
+
+// buttons and links made on the canvas name the page they go to
+const pages = {"home":"index.html","about":"about.html","contact":"contact.html"}
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-goto]')
+  if (go && pages[go.dataset.goto]) { e.preventDefault(); location.href = pages[go.dataset.goto] }
+})
+document.addEventListener('submit', e => e.preventDefault())
+</script>
+</body>
+</html>

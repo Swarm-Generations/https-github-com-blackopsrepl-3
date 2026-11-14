@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pukujan.github.io/https-github-com-blackopsrepl-3/sitemap.xml
